@@ -1,9 +1,9 @@
 import pygame
-from Girar_reescalar_imagenes import girar_imagenes
+from Girar_reescalar_imagenes import *
 
 
 parado = [pygame.image.load("Segundo parcial/Recursos/Alucard_sprites/parado/2.png")]
-
+parado = reescalar_imagenes(parado,(45,81))
 parado_izquierda = girar_imagenes(parado,True,False)
 
 caminando = [pygame.image.load("Segundo parcial/Recursos/Alucard_sprites/caminando/1.png"),
@@ -12,23 +12,24 @@ caminando = [pygame.image.load("Segundo parcial/Recursos/Alucard_sprites/caminan
             pygame.image.load("Segundo parcial/Recursos/Alucard_sprites/caminando/4.png"),
             pygame.image.load("Segundo parcial/Recursos/Alucard_sprites/caminando/5.png"),
             pygame.image.load("Segundo parcial/Recursos/Alucard_sprites/caminando/6.png")]
-
+caminando = reescalar_imagenes(caminando,(59,71))
 caminando_izquierda = girar_imagenes(caminando,True,False)
 
 saltando = [pygame.image.load("Segundo parcial/Recursos/Alucard_sprites/saltando/24.png"),
             pygame.image.load("Segundo parcial/Recursos/Alucard_sprites/saltando/25.png")]
-
+saltando = reescalar_imagenes(saltando,(69,73))
 saltando_izquierda = girar_imagenes(saltando,True,False)
 
 cayendo = [pygame.image.load("Segundo parcial/Recursos/Alucard_sprites/cayendo/27.png"),
             pygame.image.load("Segundo parcial/Recursos/Alucard_sprites/cayendo/28.png")]
-
+cayendo = reescalar_imagenes(cayendo,(74,68))
 cayendo_izquierda = girar_imagenes(cayendo,True,False)
 
 lanzando_proyectil = [pygame.image.load("Segundo parcial/Recursos/Alucard_sprites/lanzando proyectil/62.png"),
                     pygame.image.load("Segundo parcial/Recursos/Alucard_sprites/lanzando proyectil/63.png"),
-                    pygame.image.load("Segundo parcial/Recursos/Alucard_sprites/lanzando proyectil/64.png")]
-
+                    pygame.image.load("Segundo parcial/Recursos/Alucard_sprites/lanzando proyectil/64.png"),
+                    pygame.image.load("Segundo parcial/Recursos/Alucard_sprites/lanzando proyectil/63.png")]
+lanzando_proyectil = reescalar_imagenes(lanzando_proyectil,(56,78))
 lanzando_proyectil_izquierda = girar_imagenes(lanzando_proyectil,True,False)
 
 diccionario_animaciones = {}

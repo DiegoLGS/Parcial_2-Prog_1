@@ -5,13 +5,20 @@ from Clase_Cuchillo import Cuchillo
 
 class Jugador():
     def __init__(self):
-        self.posicion = {"x":200,"y":300}
+        self.posicion = {"x":100,"y":600}
         #caracteristicas
         self.gravedad = 0.2
         self.aumento_gravedad = 0.2
         self.potencia_salto = 0
-        self.velocidad = 4
+        self.velocidad = 6
         self.velocidad_animacion = 0.2
+
+        #cuchillos
+        self.grupo_cuchillos = pygame.sprite.Group()
+        self.tiempo_ultimo_lanzamiento = 0
+        self.tiempo_actual = pygame.time.get_ticks()
+        self.tiempo_espera_cuchillos = 700 #milisegundos
+        self.lanzando_cuchillo = False
 
         #estados
         self.indice_inicial = 0
@@ -20,7 +27,6 @@ class Jugador():
         self.verificar_direccion(self.estado_actual)
         self.sobre_suelo = False
         self.imagen
-        self.grupo_cuchillos = pygame.sprite.Group()
 
         #rectangulos
         self.rectangulo_jugador = self.imagen.get_rect(topleft = (self.posicion["x"],self.posicion["y"]))
@@ -37,11 +43,15 @@ class Jugador():
         self.imagen = diccionario_animaciones[estado_actual][int(self.indice_inicial)]
         self.indice_inicial += self.velocidad_animacion
 
+        if self.lanzando_cuchillo == True and self.indice_inicial >= 3:
+            self.lanzando_cuchillo = False
+
+
     def deteccion_teclado(self):
         lista_teclas = pygame.key.get_pressed()
         if self.sobre_suelo == True:
             if lista_teclas[pygame.K_SPACE]:
-                    self.potencia_salto = 20         
+                    self.potencia_salto = 28   
 
             if lista_teclas[pygame.K_d]:
                 self.posicion["x"] += self.velocidad
@@ -51,7 +61,7 @@ class Jugador():
                 self.posicion["x"] += self.velocidad * -1
                 self.estado_actual = "caminando"
                 self.mirando_izquierda = True
-            else:
+            elif self.lanzando_cuchillo == False:
                 self.estado_actual = "parado"
         else:
             if lista_teclas[pygame.K_d]:
@@ -61,9 +71,13 @@ class Jugador():
                 self.mirando_izquierda = True
                 self.posicion["x"] += self.velocidad * -1
 
-        if lista_teclas[pygame.K_j]:
+        self.tiempo_actual = pygame.time.get_ticks()
+
+        if lista_teclas[pygame.K_j] and self.tiempo_actual - self.tiempo_ultimo_lanzamiento >= self.tiempo_espera_cuchillos:
             self.estado_actual = "lanzando_proyectil"
             self.grupo_cuchillos.add(self.tirar_cuchillo())
+            self.tiempo_ultimo_lanzamiento = self.tiempo_actual
+            self.lanzando_cuchillo = True
 
     def saltar(self):
         if self.potencia_salto > 0:
@@ -72,6 +86,7 @@ class Jugador():
             self.potencia_salto -= self.gravedad
         elif self.potencia_salto <= 0 and self.sobre_suelo == False:
                 self.estado_actual = "cayendo"
+                self.lanzando_cuchillo = False
 
     def tirar_cuchillo(self):
         return Cuchillo(self.posicion["x"],self.posicion["y"] + 14, self.mirando_izquierda)
