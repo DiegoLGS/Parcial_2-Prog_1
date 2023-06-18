@@ -5,7 +5,7 @@ from Clase_Cuchillo import Cuchillo
 
 class Jugador():
     def __init__(self):
-        self.posicion = {"x":100,"y":600}
+        self.posicion = {"x":100,"y":550}
         #caracteristicas
         self.gravedad = 0.2
         self.aumento_gravedad = 0.2
@@ -27,10 +27,15 @@ class Jugador():
         self.verificar_direccion(self.estado_actual)
         self.sobre_suelo = False
         self.imagen
+        self.vida_total = 6
 
         #rectangulos
         self.rectangulo_jugador = self.imagen.get_rect(topleft = (self.posicion["x"],self.posicion["y"]))
         self.rectangulos_lados = obtener_rectangulos(self.rectangulo_jugador)
+
+        #retrato y salud
+        self.retrato = diccionario_animaciones["retrato"]
+        self.imagen_salud = diccionario_animaciones["icono_salud"]
 
     def verificar_direccion(self,estado_actual):
         if self.mirando_izquierda == True:

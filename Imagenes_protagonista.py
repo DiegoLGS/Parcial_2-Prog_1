@@ -32,6 +32,10 @@ lanzando_proyectil = [pygame.image.load("Segundo parcial/Recursos/Alucard_sprite
 lanzando_proyectil = reescalar_imagenes(lanzando_proyectil,(56,78))
 lanzando_proyectil_izquierda = girar_imagenes(lanzando_proyectil,True,False)
 
+retrato = pygame.image.load("Segundo parcial/Recursos/Alucard_sprites/retrato/0.png")
+
+icono_salud = pygame.image.load("Segundo parcial/Recursos/Alucard_sprites/icono salud/0.png")
+
 diccionario_animaciones = {}
 diccionario_animaciones["parado"] = parado
 diccionario_animaciones["parado_izquierda"] = parado_izquierda
@@ -43,3 +47,5 @@ diccionario_animaciones["cayendo"] = cayendo
 diccionario_animaciones["cayendo_izquierda"] = cayendo_izquierda
 diccionario_animaciones["lanzando_proyectil"] = lanzando_proyectil
 diccionario_animaciones["lanzando_proyectil_izquierda"] = lanzando_proyectil_izquierda
+diccionario_animaciones["retrato"] = retrato
+diccionario_animaciones["icono_salud"] = icono_salud

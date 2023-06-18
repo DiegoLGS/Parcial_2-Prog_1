@@ -10,7 +10,7 @@ AZUL_CLARO = (0,150,255)
 
 FPS = 60
 ANCHO = 1000
-ALTO = 800
+ALTO = 700
 
 #Setup general
 pygame.init()
@@ -18,10 +18,10 @@ PANTALLA = pygame.display.set_mode((ANCHO,ALTO))
 clock = pygame.time.Clock()
 
 #Fondo del juego
-background = pygame.image.load("Segundo parcial/Recursos/Fondo icono/luna sangrienta.jpg")
+background = pygame.image.load("Segundo parcial/Recursos/Fondo_icono/luna sangrienta.jpg")
 #background = pygame.transform.scale(background, (ANCHO,ALTO))
 pygame.display.set_caption("Ominous Keep")
-icono = pygame.image.load("Segundo parcial/Recursos/Fondo icono/spinning-sword.png")
+icono = pygame.image.load("Segundo parcial/Recursos/Fondo_icono/spinning-sword.png")
 pygame.display.set_icon(icono)
 
 while True:
