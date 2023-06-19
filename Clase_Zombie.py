@@ -1,16 +1,15 @@
 import pygame
 from Imagenes_enemigos import diccionario_animaciones_zombie
-from Clase_Enemigos import Enemigo
-from Obtener_rectangulos import obtener_rectangulos
 import random
 
 class Zombie(pygame.sprite.Sprite):
     def __init__(self):
-        super().__init__()#("Zombie", 2, 1) #nombre,vida total,velocidad
-        self.nombre = Zombie
+        super().__init__()
+        self.nombre = "Zombie"
         self.vida_total = 2
         self.velocidad = 1
         self.posicion = {"x":random.randint(100, 900) ,"y":100}
+
         #caracteristicas
         self.gravedad = 1
         self.aumento_gravedad = 0.2
@@ -60,11 +59,10 @@ class Zombie(pygame.sprite.Sprite):
             else:
                 self.estado_actual = "cayendo"
 
-    def actualizar(self):
+    def update(self):
         self.verificar_direccion(self.estado_actual)
         self.rect.x = self.posicion["x"]
         self.rect.y = self.posicion["y"]
-        self.rectangulos_lados = obtener_rectangulos(self.rect)
         self.caminar()
 
         if self.vida_total < 1:

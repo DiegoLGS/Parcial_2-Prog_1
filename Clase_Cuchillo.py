@@ -1,5 +1,5 @@
 import pygame
-from Proyectiles import cuchillo, cuchillo_derecha
+from Imagenes_proyectiles import cuchillo, cuchillo_derecha
 ANCHO = 1000
 
 class Cuchillo(pygame.sprite.Sprite):
@@ -8,14 +8,14 @@ class Cuchillo(pygame.sprite.Sprite):
         self.image = cuchillo[0]
         self.rect = self.image.get_rect(center = (posicion_x,posicion_y))
         self.mirando_izquierda = mirando_izquierda
-        self.velocidad_cuchillo = 12
+        self.velocidad_proyectil = 12
 
     def update(self):
         if self.mirando_izquierda:
-            self.rect.x -= self.velocidad_cuchillo
+            self.rect.x -= self.velocidad_proyectil
         else:
             self.image = cuchillo_derecha[0]
-            self.rect.x += self.velocidad_cuchillo
+            self.rect.x += self.velocidad_proyectil
         
         if self.rect.x > ANCHO or self.rect.x < -100:
             self.kill()

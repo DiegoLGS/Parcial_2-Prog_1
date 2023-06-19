@@ -2,6 +2,9 @@ import pygame
 from Clase_Jugador import Jugador
 from Obtener_rectangulos import obtener_rectangulos
 from Clase_Zombie import Zombie
+from Clase_Trampa_giratoria import Trampa_giratoria
+from Generador_enemigos import Generador_enemigos
+from Clase_Brujo import Brujo
 
 BLANCO = (255,255,255)
 NEGRO = (0,0,0)
@@ -14,7 +17,13 @@ ANCHO = 1000
 ALTO = 700
 
 jugador = Jugador()
-
+grupo_enemigos = pygame.sprite.Group()
+grupo_enemigos.add(Zombie())
+grupo_enemigos.add(Brujo(jugador))
+generador_de_enemigos = Generador_enemigos()
+grupo_trampas = pygame.sprite.Group()
+grupo_trampas.add(Trampa_giratoria(710,290))
+grupo_trampas.add(Trampa_giratoria(120,290))
 
 escenario = pygame.image.load("Segundo parcial/Recursos/Escenarios/0.png")
 escenario_escalado = pygame.transform.scale(escenario,(ANCHO,ALTO))
@@ -39,58 +48,55 @@ rectangulos_colision_vertical = [rectangulos_suelo["top"],
 rectangulos_colision_horizontal = [rectangulos_pared_derecha["left"],
                                 rectangulos_pared_izquierda["right"]]
 
-grupo_enemigos = pygame.sprite.Group()
-grupo_enemigos.add(Zombie())
-
 def Iniciar(PANTALLA):
     PANTALLA.blit(escenario_escalado,(0,0))
     PANTALLA.blit(plataforma,posicion_plataforma_uno)
     PANTALLA.blit(plataforma,posicion_plataforma_dos)
     PANTALLA.blit(plataforma,posicion_plataforma_tres)   
-
-    #if jugador.estado_actual == "lanzando_proyectil":
-    #    PANTALLA.blit(cuchillo,(jugador.posicion["x"],jugador.posicion["y"]))               
-
-    # rectangulos_del_jugador = jugador.rectangulos_lados
-    #for rectangulos in zombie.rectangulos_lados:
-        #pygame.draw.rect(PANTALLA, ROJO, zombie.rectangulos_lados[rectangulos], 2)
-    #     pygame.draw.rect(PANTALLA, ROJO, rectangulos_del_jugador[rectangulos], 2)
-    #     pygame.draw.rect(PANTALLA, ROJO, rectangulos_suelo[rectangulos], 2)
-    #     pygame.draw.rect(PANTALLA, AZUL_CLARO, rectangulos_pared_derecha[rectangulos], 2)
-    #     pygame.draw.rect(PANTALLA, VERDE, rectangulos_pared_izquierda[rectangulos], 2)
-    #     pygame.draw.rect(PANTALLA, ROJO, rectangulos_plataforma[rectangulos], 2)
-    #     pygame.draw.rect(PANTALLA, ROJO, rectangulos_plataforma_dos[rectangulos], 2)
-    #     pygame.draw.rect(PANTALLA, ROJO, rectangulos_plataforma_tres[rectangulos], 2)
-    # for cuchillos in jugador.grupo_cuchillos:
-    #     pygame.draw.rect(PANTALLA, AZUL_CLARO, cuchillos.rect, 2)
-
-    # for zombies in grupo_enemigos:
-    #     pygame.draw.rect(PANTALLA, AZUL_CLARO, zombies.rect, 2)
     
+    #generador_de_enemigos.generar_enemigo(grupo_enemigos)
 
     jugador.grupo_cuchillos.update()    
-    jugador.grupo_cuchillos.draw(PANTALLA)
+    jugador.grupo_cuchillos.draw(PANTALLA)    
     grupo_enemigos.update()       
     grupo_enemigos.draw(PANTALLA)
+    grupo_trampas.update()       
+    for trampa in grupo_trampas:
+        PANTALLA.blit(trampa.imagen_girando , trampa.rect)        
     
     jugador.actualizar()
-    for zombie in grupo_enemigos:
-        zombie.actualizar()
-        colision_cuchillo_zombie = pygame.sprite.spritecollide(zombie, jugador.grupo_cuchillos, True)
-        if colision_cuchillo_zombie:
-            zombie.vida_total -= 1
-            #if zombie.vida_total < 1:
-            #    zombie.kill()
+    for enemigo in grupo_enemigos:
+        if enemigo.estado_actual == "muriendo" or enemigo.estado_actual == "muriendo_izquierda":
+            colision_cuchillo_enemigo = pygame.sprite.spritecollide(enemigo, jugador.grupo_cuchillos, False)
+        else:
+            colision_cuchillo_enemigo = pygame.sprite.spritecollide(enemigo, jugador.grupo_cuchillos, True)
+            if colision_cuchillo_enemigo:
+                enemigo.vida_total -= 1
+            
+        if (jugador.rectangulo_jugador.colliderect(enemigo.rect) and jugador.invulnerabilidad == False) and (not enemigo.estado_actual == "muriendo" and not enemigo.estado_actual == "muriendo_izquierda"):
+            jugador.vida_total -= 1
+            jugador.daño_recibido = True
+
+        if enemigo.nombre == "Brujo":
+            enemigo.grupo_lapidas.update()
+            enemigo.grupo_lapidas.draw(PANTALLA)
+            for lapida in enemigo.grupo_lapidas:
+                if jugador.rectangulo_jugador.colliderect(lapida) and jugador.invulnerabilidad == False:
+                    jugador.vida_total -= 1
+                    jugador.daño_recibido = True
+
+    for trampa in grupo_trampas:
+        if jugador.invulnerabilidad == False:
+            if trampa.rect.colliderect(jugador.rectangulo_jugador):
+                jugador.vida_total -= 1
+                jugador.daño_recibido = True
+
             
     colision_vertical()
     colision_horizontal()
 
     PANTALLA.blit(jugador.imagen,jugador.rectangulo_jugador)
-    #PANTALLA.blit(zombie.image,zombie.rect)
 
-    #print(zombie.rectangulo_zombie)
-    #pygame.draw.rect(PANTALLA, VERDE, zombie.rectangulo_zombie, 2)
-    #pygame.draw.rect(PANTALLA, VERDE,zombie.rectangulo_zombie, 2)
     PANTALLA.blit(jugador.retrato,(20,20))
     x = 140
     for i in range(jugador.vida_total):
@@ -106,14 +112,14 @@ def colision_vertical():
             jugador.sobre_suelo = False
 
     if len(grupo_enemigos) > 0:
-        for zombie in grupo_enemigos:
+        for enemigo in grupo_enemigos:
             for rectangulos in rectangulos_colision_vertical:
-                if rectangulos.colliderect(zombie.rect):
-                    zombie.sobre_suelo = True
+                if rectangulos.colliderect(enemigo.rect):
+                    enemigo.sobre_suelo = True
                     break
                 else:
-                    zombie.sobre_suelo = False
-        zombie.aplicar_gravedad()
+                    enemigo.sobre_suelo = False
+            enemigo.aplicar_gravedad()
         
 
     jugador.aplicar_gravedad()
@@ -126,10 +132,10 @@ def colision_horizontal():
 
     if len(grupo_enemigos) > 0:
         for rectangulos in rectangulos_colision_horizontal:
-            for zombie in grupo_enemigos:                
-                if rectangulos_colision_horizontal[0].colliderect(zombie.rect) and zombie.mirando_izquierda == False:
-                    zombie.mirando_izquierda = True            
-                elif rectangulos_colision_horizontal[1].colliderect(zombie.rect) and zombie.mirando_izquierda == True:
-                    zombie.mirando_izquierda = False           
+            for enemigo in grupo_enemigos:                
+                if rectangulos_colision_horizontal[0].colliderect(enemigo.rect) and enemigo.mirando_izquierda == False:
+                    enemigo.mirando_izquierda = True            
+                elif rectangulos_colision_horizontal[1].colliderect(enemigo.rect) and enemigo.mirando_izquierda == True:
+                    enemigo.mirando_izquierda = False           
         
     

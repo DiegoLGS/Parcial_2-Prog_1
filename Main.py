@@ -19,7 +19,6 @@ clock = pygame.time.Clock()
 
 #Fondo del juego
 background = pygame.image.load("Segundo parcial/Recursos/Fondo_icono/luna sangrienta.jpg")
-#background = pygame.transform.scale(background, (ANCHO,ALTO))
 pygame.display.set_caption("Ominous Keep")
 icono = pygame.image.load("Segundo parcial/Recursos/Fondo_icono/spinning-sword.png")
 pygame.display.set_icon(icono)

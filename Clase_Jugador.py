@@ -13,12 +13,12 @@ class Jugador():
         self.velocidad = 6
         self.velocidad_animacion = 0.2
 
-        #cuchillos
+        #proyectiles
         self.grupo_cuchillos = pygame.sprite.Group()
         self.tiempo_ultimo_lanzamiento = 0
-        self.tiempo_actual = pygame.time.get_ticks()
+        self.tiempo_actual = 0
         self.tiempo_espera_cuchillos = 700 #milisegundos
-        self.lanzando_cuchillo = False
+        self.lanzando_proyecil = False
 
         #estados
         self.indice_inicial = 0
@@ -28,6 +28,13 @@ class Jugador():
         self.sobre_suelo = False
         self.imagen
         self.vida_total = 6
+        self.daño_recibido = False
+
+        #invulnerabilidad
+        self.tiempo_control_invulnerabilidad = 0
+        self.duracion_limite_invulnerabilidad = 3000
+        self.invulnerabilidad = False
+        self.duracion_total_invulnerabilidad = 0
 
         #rectangulos
         self.rectangulo_jugador = self.imagen.get_rect(topleft = (self.posicion["x"],self.posicion["y"]))
@@ -35,7 +42,7 @@ class Jugador():
 
         #retrato y salud
         self.retrato = diccionario_animaciones["retrato"]
-        self.imagen_salud = diccionario_animaciones["icono_salud"]
+        self.imagen_salud = diccionario_animaciones["icono_salud"]        
 
     def verificar_direccion(self,estado_actual):
         if self.mirando_izquierda == True:
@@ -48,8 +55,8 @@ class Jugador():
         self.imagen = diccionario_animaciones[estado_actual][int(self.indice_inicial)]
         self.indice_inicial += self.velocidad_animacion
 
-        if self.lanzando_cuchillo == True and self.indice_inicial >= 3:
-            self.lanzando_cuchillo = False
+        if self.lanzando_proyecil == True and self.indice_inicial >= 3:
+            self.lanzando_proyecil = False
 
 
     def deteccion_teclado(self):
@@ -66,7 +73,7 @@ class Jugador():
                 self.posicion["x"] += self.velocidad * -1
                 self.estado_actual = "caminando"
                 self.mirando_izquierda = True
-            elif self.lanzando_cuchillo == False:
+            elif self.lanzando_proyecil == False:
                 self.estado_actual = "parado"
         else:
             if lista_teclas[pygame.K_d]:
@@ -80,9 +87,9 @@ class Jugador():
 
         if lista_teclas[pygame.K_j] and self.tiempo_actual - self.tiempo_ultimo_lanzamiento >= self.tiempo_espera_cuchillos:
             self.estado_actual = "lanzando_proyectil"
-            self.grupo_cuchillos.add(self.tirar_cuchillo())
+            self.grupo_cuchillos.add(self.lanzar_proyectil())
             self.tiempo_ultimo_lanzamiento = self.tiempo_actual
-            self.lanzando_cuchillo = True
+            self.lanzando_proyecil = True
 
     def saltar(self):
         if self.potencia_salto > 0:
@@ -91,9 +98,9 @@ class Jugador():
             self.potencia_salto -= self.gravedad
         elif self.potencia_salto <= 0 and self.sobre_suelo == False:
                 self.estado_actual = "cayendo"
-                self.lanzando_cuchillo = False
+                self.lanzando_proyecil = False
 
-    def tirar_cuchillo(self):
+    def lanzar_proyectil(self):
         return Cuchillo(self.posicion["x"],self.posicion["y"] + 14, self.mirando_izquierda)
 
     def aplicar_gravedad(self):
@@ -104,6 +111,22 @@ class Jugador():
         else:
             self.gravedad = 1
 
+    def detectar_daño(self):
+        if self.daño_recibido == True:
+            self.invulnerabilidad = True
+            self.tiempo_control_invulnerabilidad = pygame.time.get_ticks()
+            self.duracion_total_invulnerabilidad = self.tiempo_control_invulnerabilidad + self.duracion_limite_invulnerabilidad
+            self.daño_recibido = False
+
+        if self.invulnerabilidad == True:
+            self.tiempo_control_invulnerabilidad = pygame.time.get_ticks()
+            if self.tiempo_control_invulnerabilidad  <= self.duracion_total_invulnerabilidad:
+                self.imagen.set_alpha(150)
+            else:
+                self.invulnerabilidad = False
+        else:
+                self.imagen.set_alpha(255)
+
     def actualizar(self):
         self.deteccion_teclado()
         self.verificar_direccion(self.estado_actual)
@@ -111,3 +134,8 @@ class Jugador():
         self.rectangulo_jugador.y = self.posicion["y"]
         self.saltar()
         self.rectangulos_lados = obtener_rectangulos(self.rectangulo_jugador)
+        self.detectar_daño()
+        
+
+        
+        
