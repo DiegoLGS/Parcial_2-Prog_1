@@ -40,9 +40,10 @@ class Jugador():
         self.rectangulo_jugador = self.imagen.get_rect(topleft = (self.posicion["x"],self.posicion["y"]))
         self.rectangulos_lados = obtener_rectangulos(self.rectangulo_jugador)
 
-        #retrato y salud
+        #display
         self.retrato = diccionario_animaciones["retrato"]
         self.imagen_salud = diccionario_animaciones["icono_salud"]        
+        self.puntaje = 0
 
     def verificar_direccion(self,estado_actual):
         if self.mirando_izquierda == True:
@@ -57,7 +58,6 @@ class Jugador():
 
         if self.lanzando_proyecil == True and self.indice_inicial >= 3:
             self.lanzando_proyecil = False
-
 
     def deteccion_teclado(self):
         lista_teclas = pygame.key.get_pressed()
@@ -127,6 +127,12 @@ class Jugador():
         else:
                 self.imagen.set_alpha(255)
 
+    def mostrar_salud(self,pantalla):
+        x = 140
+        for i in range(self.vida_total):
+            pantalla.blit(self.imagen_salud,(x,50))
+            x += 40
+
     def actualizar(self):
         self.deteccion_teclado()
         self.verificar_direccion(self.estado_actual)
@@ -135,7 +141,3 @@ class Jugador():
         self.saltar()
         self.rectangulos_lados = obtener_rectangulos(self.rectangulo_jugador)
         self.detectar_daño()
-        
-
-        
-        

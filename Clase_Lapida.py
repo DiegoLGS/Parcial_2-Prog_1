@@ -10,13 +10,13 @@ class Lapida(pygame.sprite.Sprite):
         self.image = lapida[random.randint(0, 2)]
         self.rect = self.image.get_rect(center = (posicion_x,posicion_y))
         self.mirando_izquierda = mirando_izquierda
-        self.velocidad_proyectil = 9
+        self.velocidad_proyectil = 7
         self.jugador_posicion_x = jugador_posicion_x
         self.jugador_posicion_y = jugador_posicion_y
         self.tiempo_vida = 1500
         self.tiempo_actual = pygame.time.get_ticks()
 
-    def update(self):
+    def update(self,jugador):
         if self.mirando_izquierda:
             self.rect.x -= self.velocidad_proyectil
         else:
@@ -32,6 +32,10 @@ class Lapida(pygame.sprite.Sprite):
 
         self.rect.x += direccion_x * self.velocidad_proyectil
         self.rect.y += direccion_y * self.velocidad_proyectil
+
+        if jugador.rectangulo_jugador.colliderect(self) and jugador.invulnerabilidad == False:
+            jugador.vida_total -= 1
+            jugador.daño_recibido = True
 
         if self.rect.x > ANCHO or self.rect.x < -100 or pygame.time.get_ticks() - self.tiempo_actual >= self.tiempo_vida:
             self.kill()

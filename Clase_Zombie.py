@@ -58,16 +58,36 @@ class Zombie(pygame.sprite.Sprite):
                 self.estado_actual = "caminando"
             else:
                 self.estado_actual = "cayendo"
+    
+    def daño_cuchillo(self,jugador):
+        if self.estado_actual == "muriendo" or self.estado_actual == "muriendo_izquierda":
+            colision_cuchillo_enemigo = pygame.sprite.spritecollide(self, jugador.grupo_cuchillos, False)
+        else:
+            colision_cuchillo_enemigo = pygame.sprite.spritecollide(self, jugador.grupo_cuchillos, True)
+            if colision_cuchillo_enemigo:
+                self.vida_total -= 1
+                if self.vida_total <= 0:
+                    jugador.puntaje += 100
 
-    def update(self):
-        self.verificar_direccion(self.estado_actual)
-        self.rect.x = self.posicion["x"]
-        self.rect.y = self.posicion["y"]
-        self.caminar()
-
+    def daño_contacto(self,jugador):
+        if (jugador.rectangulo_jugador.colliderect(self.rect) and jugador.invulnerabilidad == False) and (not self.estado_actual == "muriendo" and not self.estado_actual == "muriendo_izquierda"):
+            jugador.vida_total -= 1
+            jugador.daño_recibido = True
+            
+    def muerte(self):
         if self.vida_total < 1:
             if not self.estado_actual == "muriendo" and not self.estado_actual == "muriendo_izquierda":
                 self.indice_inicial = 0
             self.estado_actual = "muriendo"
             if self.indice_inicial >= len(diccionario_animaciones_zombie[self.estado_actual]):
                 self.kill()
+
+
+    def update(self,pantalla,jugador):
+        self.verificar_direccion(self.estado_actual)
+        self.rect.x = self.posicion["x"]
+        self.rect.y = self.posicion["y"]
+        self.caminar()
+        self.daño_cuchillo(jugador)
+        self.daño_contacto(jugador)
+        self.muerte()            

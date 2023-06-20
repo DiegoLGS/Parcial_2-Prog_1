@@ -15,7 +15,7 @@ class Brujo(pygame.sprite.Sprite):
         #caracteristicas
         self.gravedad = 1
         self.aumento_gravedad = 0.15
-        self.velocidad_animacion = 0.08
+        self.velocidad_animacion = 0.1
 
         #proyectiles
         self.grupo_lapidas = pygame.sprite.Group()
@@ -76,20 +76,44 @@ class Brujo(pygame.sprite.Sprite):
         self.lanzando_proyectil = True
         self.grupo_lapidas.add(Lapida(self.rect.x,self.rect.y + 58, self.mirando_izquierda, self.jugador.posicion["x"], self.jugador.posicion["y"]))
 
-    def update(self):
-        self.verificar_direccion(self.estado_actual)
-        self.rect.x = self.posicion["x"]
-        self.rect.y = self.posicion["y"]
-        self.caminar()
-        self.tiempo_actual = pygame.time.get_ticks()
+    def daño_cuchillo(self,jugador):
+        if self.estado_actual == "muriendo" or self.estado_actual == "muriendo_izquierda":
+            colision_cuchillo_enemigo = pygame.sprite.spritecollide(self, jugador.grupo_cuchillos, False)
+        else:
+            colision_cuchillo_enemigo = pygame.sprite.spritecollide(self, jugador.grupo_cuchillos, True)
+            if colision_cuchillo_enemigo:
+                self.vida_total -= 1
+                if self.vida_total <= 0:
+                    jugador.puntaje += 100
 
+    def daño_contacto(self,jugador):
+        if (jugador.rectangulo_jugador.colliderect(self.rect) and jugador.invulnerabilidad == False) and (not self.estado_actual == "muriendo" and not self.estado_actual == "muriendo_izquierda"):
+            jugador.vida_total -= 1
+            jugador.daño_recibido = True
+
+    def verificar_direccion_ataque(self):
+        if self.vida_total > 0:
+            if (self.tiempo_actual - self.tiempo_ultimo_lanzamiento >= self.tiempo_espera_proyectil) and ((self.jugador.posicion["x"] - self.rect.x < 0 and self.mirando_izquierda) or (self.jugador.posicion["x"] - self.rect.x > 0 and not self.mirando_izquierda)):
+                self.lanzar_proyectil()
+                self.tiempo_ultimo_lanzamiento = self.tiempo_actual
+            
+    def muerte(self):
         if self.vida_total < 1:
             if not self.estado_actual == "muriendo" and not self.estado_actual == "muriendo_izquierda":
                 self.indice_inicial = 0
             self.estado_actual = "muriendo"
             if self.indice_inicial >= len(diccionario_animaciones_brujo[self.estado_actual]):
                 self.kill()
-        else:
-            if (self.tiempo_actual - self.tiempo_ultimo_lanzamiento >= self.tiempo_espera_proyectil) and ((self.jugador.posicion["x"] - self.rect.x < 0 and self.mirando_izquierda) or (self.jugador.posicion["x"] - self.rect.x > 0 and not self.mirando_izquierda)):
-                self.lanzar_proyectil()
-                self.tiempo_ultimo_lanzamiento = self.tiempo_actual
+
+    def update(self,pantalla,jugador):
+        self.verificar_direccion(self.estado_actual)
+        self.rect.x = self.posicion["x"]
+        self.rect.y = self.posicion["y"]
+        self.caminar()
+        self.daño_cuchillo(jugador)
+        self.daño_contacto(jugador)
+        self.verificar_direccion_ataque()
+        self.tiempo_actual = pygame.time.get_ticks()
+        self.grupo_lapidas.update(jugador)
+        self.grupo_lapidas.draw(pantalla)
+        self.muerte()
