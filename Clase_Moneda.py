@@ -1,6 +1,5 @@
 import pygame
 from Imagenes_items import moneda
-ANCHO = 1000
 
 class Moneda(pygame.sprite.Sprite):
     def __init__(self, coordenadas):

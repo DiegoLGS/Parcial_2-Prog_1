@@ -6,6 +6,7 @@ from Clase_Cuchillo import Cuchillo
 class Jugador():
     def __init__(self):
         self.posicion = {"x":100,"y":550}
+        self.viento = False
         #caracteristicas
         self.gravedad = 0.2
         self.aumento_gravedad = 0.2
@@ -17,7 +18,7 @@ class Jugador():
         self.grupo_cuchillos = pygame.sprite.Group()
         self.tiempo_ultimo_lanzamiento = 0
         self.tiempo_actual = 0
-        self.tiempo_espera_cuchillos = 700 #milisegundos
+        self.tiempo_espera_cuchillos = 500 #milisegundos
         self.lanzando_proyecil = False
 
         #estados
@@ -74,7 +75,10 @@ class Jugador():
                 self.estado_actual = "caminando"
                 self.mirando_izquierda = True
             elif self.lanzando_proyecil == False:
-                self.estado_actual = "parado"
+                if self.viento:
+                    self.estado_actual = "parado_viento"
+                else:
+                    self.estado_actual = "parado"
         else:
             if lista_teclas[pygame.K_d]:
                 self.mirando_izquierda = False
@@ -127,11 +131,16 @@ class Jugador():
         else:
                 self.imagen.set_alpha(255)
 
-    def mostrar_salud(self,pantalla):
+    def mostrar_salud(self, pantalla):
         x = 140
         for i in range(self.vida_total):
             pantalla.blit(self.imagen_salud,(x,50))
             x += 40
+
+    def nivel_final(self, nivel_final):
+        if nivel_final:
+            self.viento = True
+
 
     def actualizar(self):
         self.deteccion_teclado()

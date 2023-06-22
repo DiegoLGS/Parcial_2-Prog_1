@@ -1,7 +1,6 @@
 import pygame
 from Girar_reescalar_imagenes import *
 
-
 parado = [pygame.image.load("Segundo parcial/Recursos/Alucard_sprites/parado/2.png")]
 parado = reescalar_imagenes(parado,(45,81))
 parado_izquierda = girar_imagenes(parado,True,False)
@@ -32,6 +31,16 @@ lanzando_proyectil = [pygame.image.load("Segundo parcial/Recursos/Alucard_sprite
 lanzando_proyectil = reescalar_imagenes(lanzando_proyectil,(56,78))
 lanzando_proyectil_izquierda = girar_imagenes(lanzando_proyectil,True,False)
 
+parado_viento = [pygame.image.load("Segundo parcial/Recursos/Alucard_sprites/parado viento/0.png"),
+                    pygame.image.load("Segundo parcial/Recursos/Alucard_sprites/parado viento/1.png"),
+                    pygame.image.load("Segundo parcial/Recursos/Alucard_sprites/parado viento/2.png"),
+                    pygame.image.load("Segundo parcial/Recursos/Alucard_sprites/parado viento/3.png"),
+                    pygame.image.load("Segundo parcial/Recursos/Alucard_sprites/parado viento/4.png"),
+                    pygame.image.load("Segundo parcial/Recursos/Alucard_sprites/parado viento/5.png"),
+                    pygame.image.load("Segundo parcial/Recursos/Alucard_sprites/parado viento/6.png")]
+parado_viento = reescalar_imagenes(parado_viento,(64,76))
+parado_viento_izquierda = girar_imagenes(parado_viento,True,False)
+
 retrato = pygame.image.load("Segundo parcial/Recursos/Alucard_sprites/retrato/0.png")
 
 icono_salud = pygame.image.load("Segundo parcial/Recursos/Alucard_sprites/icono salud/0.png")
@@ -49,3 +58,5 @@ diccionario_animaciones["lanzando_proyectil"] = lanzando_proyectil
 diccionario_animaciones["lanzando_proyectil_izquierda"] = lanzando_proyectil_izquierda
 diccionario_animaciones["retrato"] = retrato
 diccionario_animaciones["icono_salud"] = icono_salud
+diccionario_animaciones["parado_viento"] = parado_viento
+diccionario_animaciones["parado_viento_izquierda"] = parado_viento_izquierda

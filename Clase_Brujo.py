@@ -4,7 +4,7 @@ import random
 from Clase_Lapida import Lapida
 
 class Brujo(pygame.sprite.Sprite):
-    def __init__(self,jugador):
+    def __init__(self, jugador):
         super().__init__()
         self.jugador = jugador
         self.nombre = "Brujo"
@@ -36,20 +36,20 @@ class Brujo(pygame.sprite.Sprite):
 
         #rectangulos
         self.image = diccionario_animaciones_brujo["cayendo"][0]
-        self.rect = self.image.get_rect(topleft=(self.posicion["x"],self.posicion["y"]))   
+        self.rect = self.image.get_rect(topleft = (self.posicion["x"],self.posicion["y"]))   
 
-    def verificar_direccion(self,estado_actual):
+    def verificar_direccion(self, estado_actual):
         if self.mirando_izquierda == True:
             estado_actual = f"{self.estado_actual}_izquierda"
         self.animar_imagenes(estado_actual)                
             
-    def animar_imagenes(self,estado_actual):
+    def animar_imagenes(self, estado_actual):
         if self.indice_inicial >= len(diccionario_animaciones_brujo[estado_actual]):
             self.indice_inicial = 0
         self.image = diccionario_animaciones_brujo[estado_actual][int(self.indice_inicial)]
         self.indice_inicial += self.velocidad_animacion
 
-        if self.lanzando_proyectil == True and self.indice_inicial >= 2:
+        if self.lanzando_proyectil == True and self.indice_inicial >= len(diccionario_animaciones_brujo[estado_actual]):
             self.lanzando_proyectil = False
 
     def aplicar_gravedad(self):
@@ -76,7 +76,7 @@ class Brujo(pygame.sprite.Sprite):
         self.lanzando_proyectil = True
         self.grupo_lapidas.add(Lapida(self.rect.x,self.rect.y + 58, self.mirando_izquierda, self.jugador.posicion["x"], self.jugador.posicion["y"]))
 
-    def daño_cuchillo(self,jugador):
+    def daño_cuchillo(self, jugador):
         if self.estado_actual == "muriendo" or self.estado_actual == "muriendo_izquierda":
             colision_cuchillo_enemigo = pygame.sprite.spritecollide(self, jugador.grupo_cuchillos, False)
         else:
@@ -86,7 +86,7 @@ class Brujo(pygame.sprite.Sprite):
                 if self.vida_total <= 0:
                     jugador.puntaje += 100
 
-    def daño_contacto(self,jugador):
+    def daño_contacto(self, jugador):
         if (jugador.rectangulo_jugador.colliderect(self.rect) and jugador.invulnerabilidad == False) and (not self.estado_actual == "muriendo" and not self.estado_actual == "muriendo_izquierda"):
             jugador.vida_total -= 1
             jugador.daño_recibido = True
@@ -105,7 +105,7 @@ class Brujo(pygame.sprite.Sprite):
             if self.indice_inicial >= len(diccionario_animaciones_brujo[self.estado_actual]):
                 self.kill()
 
-    def update(self,pantalla,jugador):
+    def update(self, pantalla, jugador):
         self.verificar_direccion(self.estado_actual)
         self.rect.x = self.posicion["x"]
         self.rect.y = self.posicion["y"]

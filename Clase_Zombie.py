@@ -6,7 +6,7 @@ class Zombie(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
         self.nombre = "Zombie"
-        self.vida_total = 2
+        self.vida_total = 3
         self.velocidad = 1
         self.posicion = {"x":random.randint(100, 900) ,"y":100}
 
@@ -27,7 +27,7 @@ class Zombie(pygame.sprite.Sprite):
 
         #rectangulos
         self.image = diccionario_animaciones_zombie["cayendo"][0]
-        self.rect = self.image.get_rect(topleft=(self.posicion["x"],self.posicion["y"]))        
+        self.rect = self.image.get_rect(topleft = (self.posicion["x"],self.posicion["y"]))        
 
     def verificar_direccion(self,estado_actual):
         if self.mirando_izquierda == True:
@@ -81,7 +81,6 @@ class Zombie(pygame.sprite.Sprite):
             self.estado_actual = "muriendo"
             if self.indice_inicial >= len(diccionario_animaciones_zombie[self.estado_actual]):
                 self.kill()
-
 
     def update(self,pantalla,jugador):
         self.verificar_direccion(self.estado_actual)

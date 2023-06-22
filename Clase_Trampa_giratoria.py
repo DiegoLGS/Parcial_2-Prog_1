@@ -3,7 +3,7 @@ import pygame
 class Trampa_giratoria(pygame.sprite.Sprite):
     def __init__(self, coordenadas):
         super().__init__()
-        self.image = pygame.image.load("Segundo parcial/Recursos/Trampas/0.png")
+        self.image = pygame.image.load("Segundo parcial/Recursos/Trampas/Giratoria/0.png")
         self.coordenadas = coordenadas
         self.rect = self.image.get_rect(topleft = (self.coordenadas))
         self.angulo = 0

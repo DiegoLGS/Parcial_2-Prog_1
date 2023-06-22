@@ -66,3 +66,71 @@ diccionario_animaciones_brujo["muriendo"] = brujo_muriendo
 diccionario_animaciones_brujo["muriendo_izquierda"] = brujo_muriendo_izquierda
 diccionario_animaciones_brujo["lanzando_proyectil"] = brujo_lanzando_proyectil
 diccionario_animaciones_brujo["lanzando_proyectil_izquierda"] = brujo_lanzando_proyectil_izquierda
+
+#ESPECTRO
+espectro_caminando = [pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Espectro/caminando/0.png"),
+            pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Espectro/caminando/1.png"),
+            pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Espectro/caminando/2.png"),
+            pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Espectro/caminando/3.png"),
+            pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Espectro/caminando/4.png")]
+
+espectro_cayendo = [pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Espectro/cayendo/0.png")]
+
+espectro_muriendo = [pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Espectro/muriendo/0.png"),
+            pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Espectro/muriendo/1.png"),
+            pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Espectro/muriendo/2.png"),
+            pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Espectro/muriendo/3.png"),
+            pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Espectro/muriendo/4.png")]
+
+espectro_lanzando_proyectil = [pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Espectro/lanzando proyectil/0.png"),
+                pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Espectro/lanzando proyectil/1.png"),
+                pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Espectro/lanzando proyectil/2.png"),
+                pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Espectro/lanzando proyectil/3.png"),
+                pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Espectro/lanzando proyectil/4.png")]
+
+diccionario_animaciones_espectro = {}
+diccionario_animaciones_espectro["caminando"] = espectro_caminando
+diccionario_animaciones_espectro["cayendo"] = espectro_cayendo
+diccionario_animaciones_espectro["muriendo"] = espectro_muriendo
+diccionario_animaciones_espectro["lanzando_proyectil"] = espectro_lanzando_proyectil
+
+#PARCA
+parca_caminando_izquierda = [pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Parca/caminando/0.png"),
+                pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Parca/caminando/1.png"),
+                pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Parca/caminando/2.png"),
+                pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Parca/caminando/3.png"),
+                pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Parca/caminando/4.png"),
+                pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Parca/caminando/5.png")]
+parca_caminando = girar_imagenes(parca_caminando_izquierda,True,False)
+
+parca_cayendo_izquierda = [pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Parca/cayendo/0.png")]
+parca_cayendo = girar_imagenes(parca_cayendo_izquierda,True,False)
+
+parca_muriendo_izquierda = [pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Parca/muriendo/0.png"),
+            pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Parca/muriendo/1.png"),
+            pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Parca/muriendo/2.png"),
+            pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Parca/muriendo/3.png"),
+            pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Parca/muriendo/4.png")]
+parca_muriendo = girar_imagenes(parca_muriendo_izquierda,True,False)
+
+parca_atacando_izquierda = [pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Parca/atacando/0.png"),
+                pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Parca/atacando/1.png"),
+                pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Parca/atacando/2.png"),
+                pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Parca/atacando/3.png"),
+                pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Parca/atacando/4.png"),
+                pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Parca/atacando/5.png"),
+                pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Parca/atacando/6.png"),
+                pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Parca/atacando/7.png"),
+                pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Parca/atacando/8.png"),
+                pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Parca/atacando/9.png")]
+parca_atacando = girar_imagenes(parca_atacando_izquierda,True,False)
+
+diccionario_animaciones_parca = {}
+diccionario_animaciones_parca["caminando"] = parca_caminando
+diccionario_animaciones_parca["caminando_izquierda"] = parca_caminando_izquierda
+diccionario_animaciones_parca["cayendo"] = parca_cayendo
+diccionario_animaciones_parca["cayendo_izquierda"] = parca_cayendo_izquierda
+diccionario_animaciones_parca["muriendo"] = parca_muriendo
+diccionario_animaciones_parca["muriendo_izquierda"] = parca_muriendo_izquierda
+diccionario_animaciones_parca["atacando"] = parca_atacando
+diccionario_animaciones_parca["atacando_izquierda"] = parca_atacando_izquierda
