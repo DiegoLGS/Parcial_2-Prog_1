@@ -41,6 +41,15 @@ parado_viento = [pygame.image.load("Segundo parcial/Recursos/Alucard_sprites/par
 parado_viento = reescalar_imagenes(parado_viento,(64,76))
 parado_viento_izquierda = girar_imagenes(parado_viento,True,False)
 
+muriendo = [pygame.image.load("Segundo parcial/Recursos/Alucard_sprites/muriendo/0.png"),
+            pygame.image.load("Segundo parcial/Recursos/Alucard_sprites/muriendo/1.png"),
+            pygame.image.load("Segundo parcial/Recursos/Alucard_sprites/muriendo/2.png"),
+            pygame.image.load("Segundo parcial/Recursos/Alucard_sprites/muriendo/3.png"),
+            pygame.image.load("Segundo parcial/Recursos/Alucard_sprites/muriendo/4.png"),
+            pygame.image.load("Segundo parcial/Recursos/Alucard_sprites/muriendo/5.png")]
+muriendo = reescalar_imagenes(muriendo,(56,78))
+muriendo_izquierda = girar_imagenes(muriendo,True,False)
+
 retrato = pygame.image.load("Segundo parcial/Recursos/Alucard_sprites/retrato/0.png")
 
 icono_salud = pygame.image.load("Segundo parcial/Recursos/Alucard_sprites/icono salud/0.png")
@@ -60,3 +69,5 @@ diccionario_animaciones["retrato"] = retrato
 diccionario_animaciones["icono_salud"] = icono_salud
 diccionario_animaciones["parado_viento"] = parado_viento
 diccionario_animaciones["parado_viento_izquierda"] = parado_viento_izquierda
+diccionario_animaciones["muriendo"] = muriendo
+diccionario_animaciones["muriendo_izquierda"] = muriendo_izquierda

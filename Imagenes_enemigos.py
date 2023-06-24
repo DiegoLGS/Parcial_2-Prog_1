@@ -134,3 +134,107 @@ diccionario_animaciones_parca["muriendo"] = parca_muriendo
 diccionario_animaciones_parca["muriendo_izquierda"] = parca_muriendo_izquierda
 diccionario_animaciones_parca["atacando"] = parca_atacando
 diccionario_animaciones_parca["atacando_izquierda"] = parca_atacando_izquierda
+
+#HOMBRE LOBO
+hombre_lobo_intro = [pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Hombre Lobo/intro/3.png"),
+                pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Hombre Lobo/intro/4.png"),
+                pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Hombre Lobo/intro/5.png"),
+                pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Hombre Lobo/intro/6.png"),
+                pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Hombre Lobo/intro/7.png"),
+                pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Hombre Lobo/intro/8.png"),
+                pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Hombre Lobo/intro/9.png"),
+                pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Hombre Lobo/intro/10.png"),
+                pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Hombre Lobo/intro/11.png"),
+                pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Hombre Lobo/intro/12.png")]
+hombre_lobo_intro = girar_imagenes(hombre_lobo_intro, True, False)
+hombre_lobo_intro = reescalar_imagenes(hombre_lobo_intro,(143, 147))
+
+hombre_lobo_caminando = [pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Hombre Lobo/caminando/0.png"),
+            pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Hombre Lobo/caminando/1.png"),
+            pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Hombre Lobo/caminando/2.png"),
+            pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Hombre Lobo/caminando/3.png")]
+hombre_lobo_caminando = reescalar_imagenes(hombre_lobo_caminando,(152, 144))
+hombre_lobo_caminando_izquierda = girar_imagenes(hombre_lobo_caminando, True, False)
+
+hombre_lobo_cayendo = [pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Hombre Lobo/cayendo/0.png"),
+                pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Hombre Lobo/cayendo/1.png"),
+                pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Hombre Lobo/cayendo/2.png"),
+                pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Hombre Lobo/cayendo/3.png")]
+hombre_lobo_cayendo = reescalar_imagenes(hombre_lobo_cayendo,(152, 144))
+hombre_lobo_cayendo_izquierda = girar_imagenes(hombre_lobo_cayendo,True, False)
+
+hombre_lobo_muriendo = [pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Hombre Lobo/muriendo/0.png"),
+            pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Hombre Lobo/muriendo/1.png"),
+            pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Hombre Lobo/muriendo/2.png"),
+            pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Hombre Lobo/muriendo/3.png"),
+            pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Hombre Lobo/muriendo/4.png"),
+            pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Hombre Lobo/muriendo/5.png"),
+            pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Hombre Lobo/muriendo/6.png"),
+            pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Hombre Lobo/muriendo/7.png"),
+            pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Hombre Lobo/muriendo/8.png"),
+            pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Hombre Lobo/muriendo/9.png"),
+            pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Hombre Lobo/muriendo/10.png"),
+            pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Hombre Lobo/muriendo/11.png"),
+            pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Hombre Lobo/muriendo/12.png"),
+            pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Hombre Lobo/muriendo/13.png"),
+            pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Hombre Lobo/muriendo/14.png"),
+            pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Hombre Lobo/muriendo/15.png"),
+            pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Hombre Lobo/muriendo/16.png"),
+            pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Hombre Lobo/muriendo/17.png"),
+            pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Hombre Lobo/muriendo/18.png"),
+            pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Hombre Lobo/muriendo/19.png")]
+hombre_lobo_muriendo = reescalar_imagenes(hombre_lobo_muriendo,(152,144))
+hombre_lobo_muriendo_izquierda = girar_imagenes(hombre_lobo_muriendo,True,False)
+
+hombre_lobo_lanzando_proyectil = [pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Hombre Lobo/lanzando proyectil/0.png"),
+                pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Hombre Lobo/lanzando proyectil/1.png"),
+                pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Hombre Lobo/lanzando proyectil/2.png"),
+                pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Hombre Lobo/lanzando proyectil/3.png"),
+                pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Hombre Lobo/lanzando proyectil/4.png")]
+hombre_lobo_lanzando_proyectil = reescalar_imagenes(hombre_lobo_lanzando_proyectil,(152, 144))
+hombre_lobo_lanzando_proyectil_izquierda = girar_imagenes(hombre_lobo_lanzando_proyectil,True, False)
+
+hombre_lobo_saltando = [pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Hombre Lobo/saltando/0.png"),
+                pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Hombre Lobo/saltando/1.png")]
+hombre_lobo_saltando = reescalar_imagenes(hombre_lobo_saltando,(152, 144))
+hombre_lobo_saltando_izquierda = girar_imagenes(hombre_lobo_saltando,True, False)
+
+hombre_lobo_ataque_garra = [pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Hombre Lobo/ataque_garra/0.png"),
+                pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Hombre Lobo/ataque_garra/1.png"),
+                pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Hombre Lobo/ataque_garra/2.png"),
+                pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Hombre Lobo/ataque_garra/3.png"),
+                pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Hombre Lobo/ataque_garra/4.png"),
+                pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Hombre Lobo/ataque_garra/5.png")]
+hombre_lobo_ataque_garra = reescalar_imagenes(hombre_lobo_ataque_garra,(152, 144))
+hombre_lobo_ataque_garra_izquierda = girar_imagenes(hombre_lobo_ataque_garra,True, False)
+
+hombre_lobo_regeneracion = [pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Hombre Lobo/regeneracion/0.png"),
+                    pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Hombre Lobo/regeneracion/1.png")]
+hombre_lobo_regeneracion = reescalar_imagenes(hombre_lobo_regeneracion,(152, 144))
+hombre_lobo_regeneracion_izquierda = girar_imagenes(hombre_lobo_regeneracion,True, False)
+
+retrato = pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Hombre Lobo/retrato/0.png")
+
+icono_salud = pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Hombre Lobo/icono salud/0.png")
+
+icono_salud_regeneracion = pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Hombre Lobo/icono salud/1.png")
+
+diccionario_animaciones_hombre_lobo = {}
+diccionario_animaciones_hombre_lobo["intro"] = hombre_lobo_intro
+diccionario_animaciones_hombre_lobo["caminando"] = hombre_lobo_caminando
+diccionario_animaciones_hombre_lobo["caminando_izquierda"] = hombre_lobo_caminando_izquierda
+diccionario_animaciones_hombre_lobo["cayendo"] = hombre_lobo_cayendo
+diccionario_animaciones_hombre_lobo["cayendo_izquierda"] = hombre_lobo_cayendo_izquierda
+diccionario_animaciones_hombre_lobo["muriendo"] = hombre_lobo_muriendo
+diccionario_animaciones_hombre_lobo["muriendo_izquierda"] = hombre_lobo_muriendo_izquierda
+diccionario_animaciones_hombre_lobo["lanzando_proyectil"] = hombre_lobo_lanzando_proyectil
+diccionario_animaciones_hombre_lobo["lanzando_proyectil_izquierda"] = hombre_lobo_lanzando_proyectil_izquierda
+diccionario_animaciones_hombre_lobo["saltando"] = hombre_lobo_saltando
+diccionario_animaciones_hombre_lobo["saltando_izquierda"] = hombre_lobo_saltando_izquierda
+diccionario_animaciones_hombre_lobo["ataque_garra"] = hombre_lobo_ataque_garra
+diccionario_animaciones_hombre_lobo["ataque_garra_izquierda"] = hombre_lobo_ataque_garra_izquierda
+diccionario_animaciones_hombre_lobo["regeneracion"] = hombre_lobo_regeneracion
+diccionario_animaciones_hombre_lobo["regeneracion_izquierda"] = hombre_lobo_regeneracion_izquierda
+diccionario_animaciones_hombre_lobo["retrato"] = retrato
+diccionario_animaciones_hombre_lobo["icono_salud"] = icono_salud
+diccionario_animaciones_hombre_lobo["icono_salud_regeneracion"] = icono_salud_regeneracion

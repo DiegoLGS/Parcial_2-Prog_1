@@ -14,6 +14,7 @@ class Nivel():
         self.nivel = nivel
         self.generador_de_enemigos = Generador_enemigos()
         self.coordenadas_plataformas = coordenadas_plataformas
+        self.nivel_finalizado = False
 
         #grupos
         self.grupo_enemigos = pygame.sprite.Group()
@@ -50,8 +51,7 @@ class Nivel():
                     self.grupo_trampas.add(Trampa_giratoria(coordenadas))
 
                 case 2:
-                    self.grupo_trampas.add(Trampa_escondida(coordenadas))
-            
+                    self.grupo_trampas.add(Trampa_escondida(coordenadas))            
 
     def desplegar_plataformas(self, pantalla, coordenadas_plataformas):
         for coordenadas in coordenadas_plataformas:
@@ -97,7 +97,7 @@ class Nivel():
                     elif self.rectangulos_colision_horizontal[1].colliderect(enemigo.rect) and enemigo.mirando_izquierda == True:
                         enemigo.mirando_izquierda = False
     
-    def actualizar(self, pantalla, jugador):
+    def actualizar(self, pantalla, jugador, tiempo_espera_enemigos):
         self.dibujar_escenario(pantalla)
         self.grupo_enemigos.draw(pantalla)
         self.grupo_enemigos.update(pantalla ,jugador)       
@@ -106,5 +106,5 @@ class Nivel():
         self.colision_vertical(jugador, self.grupo_enemigos)
         self.colision_horizontal(jugador, self.grupo_enemigos)
 
-        if self.generador_de_enemigos.enemigos_creados < 4:
-            self.generador_de_enemigos.generar_enemigo(self.nivel, self.grupo_enemigos, jugador)
+        if self.generador_de_enemigos.enemigos_creados < 6:
+            self.generador_de_enemigos.generar_enemigo(self.nivel, self.grupo_enemigos, jugador, tiempo_espera_enemigos)

@@ -71,6 +71,7 @@ class Espectro(pygame.sprite.Sprite):
                 self.tiempo_ultimo_lanzamiento = self.tiempo_actual
                 self.estado_actual = "lanzando_proyectil"
                 self.lanzando_proyectil = True
+                self.indice_inicial = 0
                 self.grupo_ojos_cometa.add(Ojo_cometa(jugador.posicion["x"]))
     
     def daño_cuchillo(self,jugador):

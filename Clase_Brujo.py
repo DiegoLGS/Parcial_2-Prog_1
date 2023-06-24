@@ -74,6 +74,7 @@ class Brujo(pygame.sprite.Sprite):
     def lanzar_proyectil(self):
         self.estado_actual = "lanzando_proyectil"
         self.lanzando_proyectil = True
+        self.indice_inicial = 0
         self.grupo_lapidas.add(Lapida(self.rect.x,self.rect.y + 58, self.mirando_izquierda, self.jugador.posicion["x"], self.jugador.posicion["y"]))
 
     def daño_cuchillo(self, jugador):
