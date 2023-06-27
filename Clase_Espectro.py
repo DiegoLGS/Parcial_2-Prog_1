@@ -2,6 +2,7 @@ import pygame
 from Imagenes_enemigos import diccionario_animaciones_espectro
 import random
 from Clase_Ojo_cometa import Ojo_cometa
+from Sonidos import sonido_cuchillo
 
 class Espectro(pygame.sprite.Sprite):
     def __init__(self, jugador):
@@ -80,6 +81,7 @@ class Espectro(pygame.sprite.Sprite):
         else:
             colision_cuchillo_enemigo = pygame.sprite.spritecollide(self, jugador.grupo_cuchillos, True)
             if colision_cuchillo_enemigo:
+                sonido_cuchillo.play()
                 self.vida_total -= 1
                 if self.vida_total <= 0:
                     jugador.puntaje += 100

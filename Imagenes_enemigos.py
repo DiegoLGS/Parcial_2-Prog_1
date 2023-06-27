@@ -73,20 +73,24 @@ espectro_caminando = [pygame.image.load("Segundo parcial/Recursos/Enemigos_sprit
             pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Espectro/caminando/2.png"),
             pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Espectro/caminando/3.png"),
             pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Espectro/caminando/4.png")]
+espectro_caminando = reescalar_imagenes(espectro_caminando,(40, 90))
 
 espectro_cayendo = [pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Espectro/cayendo/0.png")]
+espectro_cayendo = reescalar_imagenes(espectro_cayendo,(40, 90))
 
 espectro_muriendo = [pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Espectro/muriendo/0.png"),
             pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Espectro/muriendo/1.png"),
             pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Espectro/muriendo/2.png"),
             pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Espectro/muriendo/3.png"),
             pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Espectro/muriendo/4.png")]
+espectro_muriendo = reescalar_imagenes(espectro_muriendo,(40, 90))
 
 espectro_lanzando_proyectil = [pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Espectro/lanzando proyectil/0.png"),
                 pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Espectro/lanzando proyectil/1.png"),
                 pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Espectro/lanzando proyectil/2.png"),
                 pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Espectro/lanzando proyectil/3.png"),
                 pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Espectro/lanzando proyectil/4.png")]
+espectro_lanzando_proyectil = reescalar_imagenes(espectro_lanzando_proyectil,(70, 100))
 
 diccionario_animaciones_espectro = {}
 diccionario_animaciones_espectro["caminando"] = espectro_caminando
@@ -101,9 +105,11 @@ parca_caminando_izquierda = [pygame.image.load("Segundo parcial/Recursos/Enemigo
                 pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Parca/caminando/3.png"),
                 pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Parca/caminando/4.png"),
                 pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Parca/caminando/5.png")]
+parca_caminando_izquierda = reescalar_imagenes(parca_caminando_izquierda,(120, 120))
 parca_caminando = girar_imagenes(parca_caminando_izquierda,True,False)
 
 parca_cayendo_izquierda = [pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Parca/cayendo/0.png")]
+parca_cayendo_izquierda = reescalar_imagenes(parca_cayendo_izquierda,(64, 110))
 parca_cayendo = girar_imagenes(parca_cayendo_izquierda,True,False)
 
 parca_muriendo_izquierda = [pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Parca/muriendo/0.png"),
@@ -111,6 +117,7 @@ parca_muriendo_izquierda = [pygame.image.load("Segundo parcial/Recursos/Enemigos
             pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Parca/muriendo/2.png"),
             pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Parca/muriendo/3.png"),
             pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Parca/muriendo/4.png")]
+parca_muriendo_izquierda = reescalar_imagenes(parca_muriendo_izquierda,(70, 105))
 parca_muriendo = girar_imagenes(parca_muriendo_izquierda,True,False)
 
 parca_atacando_izquierda = [pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Parca/atacando/0.png"),
@@ -123,6 +130,7 @@ parca_atacando_izquierda = [pygame.image.load("Segundo parcial/Recursos/Enemigos
                 pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Parca/atacando/7.png"),
                 pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Parca/atacando/8.png"),
                 pygame.image.load("Segundo parcial/Recursos/Enemigos_sprites/Parca/atacando/9.png")]
+parca_atacando_izquierda = reescalar_imagenes(parca_atacando_izquierda,(88, 105))
 parca_atacando = girar_imagenes(parca_atacando_izquierda,True,False)
 
 diccionario_animaciones_parca = {}

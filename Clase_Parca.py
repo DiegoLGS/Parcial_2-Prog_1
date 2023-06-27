@@ -1,6 +1,7 @@
 import pygame
 from Imagenes_enemigos import diccionario_animaciones_parca
 import random
+from Sonidos import sonido_cuchillo, sonido_guadaña
 
 class Parca(pygame.sprite.Sprite):
     def __init__(self):
@@ -82,6 +83,7 @@ class Parca(pygame.sprite.Sprite):
         else:
             colision_cuchillo_enemigo = pygame.sprite.spritecollide(self, jugador.grupo_cuchillos, True)
             if colision_cuchillo_enemigo:
+                sonido_cuchillo.play()
                 self.vida_total -= 1
                 if self.vida_total <= 0:
                     jugador.puntaje += 100
@@ -89,6 +91,7 @@ class Parca(pygame.sprite.Sprite):
     def daño_contacto(self,jugador):
         if (jugador.rectangulo_jugador.colliderect(self.rect) and jugador.invulnerabilidad == False) and (not self.estado_actual == "muriendo" and not self.estado_actual == "muriendo_izquierda"):
             jugador.vida_total -= 1
+            sonido_guadaña.play()
             jugador.daño_recibido = True
             
     def muerte(self):

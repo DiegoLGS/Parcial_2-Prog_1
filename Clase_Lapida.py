@@ -2,6 +2,7 @@ import pygame
 from Imagenes_proyectiles import lapida
 import math
 import random
+from Sonidos import sonido_lapida
 ANCHO = 1000
 
 class Lapida(pygame.sprite.Sprite):
@@ -15,6 +16,7 @@ class Lapida(pygame.sprite.Sprite):
         self.jugador_posicion_y = jugador_posicion_y
         self.tiempo_vida = 1500
         self.tiempo_actual = pygame.time.get_ticks()
+        self.sonido = sonido_lapida
 
     def update(self,jugador):
         if self.mirando_izquierda:
@@ -34,6 +36,7 @@ class Lapida(pygame.sprite.Sprite):
         self.rect.y += direccion_y * self.velocidad_proyectil
 
         if jugador.rectangulo_jugador.colliderect(self) and jugador.invulnerabilidad == False:
+            self.sonido.play()
             jugador.vida_total -= 1
             jugador.daño_recibido = True
 

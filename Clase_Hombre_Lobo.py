@@ -2,6 +2,8 @@ import pygame
 from Imagenes_enemigos import diccionario_animaciones_hombre_lobo
 import random
 from Clase_Esfera_lunar import Esfera_lunar
+from Sonidos import sonido_cuchillo, sonido_hombre_lobo_saltando, sonido_hombre_lobo_regenerandose, sonido_hombre_lobo_regeneracion, sonido_hombre_lobo_ataque_garra
+
 
 class Hombre_Lobo(pygame.sprite.Sprite):
     def __init__(self, jugador):
@@ -12,6 +14,7 @@ class Hombre_Lobo(pygame.sprite.Sprite):
         self.velocidad = 7
         self.posicion = {"x":600 ,"y":-20}
         self.intro = True
+        self.indice_intro = 0
 
         #caracteristicas
         self.gravedad = 1
@@ -79,13 +82,14 @@ class Hombre_Lobo(pygame.sprite.Sprite):
                 else:
                     self.estado_actual = "cayendo"
         else:
-            tiempo_actual = pygame.time.get_ticks()
-            indice_intro = tiempo_actual / 1000 
-            if indice_intro >= 0 and indice_intro < len(diccionario_animaciones_hombre_lobo["intro"]):
-                self.image = diccionario_animaciones_hombre_lobo["intro"][int(indice_intro)]
+            if self.indice_intro < len(diccionario_animaciones_hombre_lobo["intro"]):
+                self.image = diccionario_animaciones_hombre_lobo["intro"][int(self.indice_intro)]
+                self.indice_intro += 0.02
             else:
                 self.intro = False
                 jugador.bloqueo_teclado = False
+        
+
 
     def lanzar_proyectil(self):
         self.estado_actual = "lanzando_proyectil"
@@ -99,6 +103,7 @@ class Hombre_Lobo(pygame.sprite.Sprite):
         else:
             colision_cuchillo_enemigo = pygame.sprite.spritecollide(self, jugador.grupo_cuchillos, True)
             if colision_cuchillo_enemigo:
+                sonido_cuchillo.play()
                 self.vida_total -= 1
                 if self.vida_total <= 0:
                     jugador.puntaje += 100
@@ -144,6 +149,7 @@ class Hombre_Lobo(pygame.sprite.Sprite):
                     case 0:
                         if self.jugador.posicion["x"] - self.rect.x > -200 and self.jugador.posicion["x"] - self.rect.x < 200:
                             self.potencia_salto = 30
+                            sonido_hombre_lobo_saltando.play()
 
                     case 1:                       
                         self.verificar_direccion_ataque()
@@ -151,6 +157,7 @@ class Hombre_Lobo(pygame.sprite.Sprite):
                     case 2:
                         self.velocidad = 4.5
                         self.estado_actual = "ataque_garra"
+                        sonido_hombre_lobo_ataque_garra.play()
                         
                     case 3:
                         self.estado_actual = "caminando"
@@ -161,6 +168,8 @@ class Hombre_Lobo(pygame.sprite.Sprite):
                     case 5:
                         self.regenerando = True
                         self.regeneracion()
+                        sonido_hombre_lobo_regenerandose.play()
+                        sonido_hombre_lobo_regeneracion.play()
 
     def muerte(self):
         if self.vida_total < 1:

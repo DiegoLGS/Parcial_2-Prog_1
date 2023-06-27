@@ -5,16 +5,25 @@ from Clase_Moneda import Moneda
 from Clase_Generador_enemigos import Generador_enemigos
 from Clase_Pocion_chica import Pocion_chica
 from Clase_Trampa_escondida import Trampa_escondida
+from Clase_Cronometro import Cronometro
 
 ANCHO = 1000
 ALTO = 700
 
 class Nivel():
-    def __init__(self, nivel, coordenadas_monedas, coordenadas_pocion_chica, coordenadas_trampas, imagen_escenario, imagen_plataforma, coordenadas_plataformas):
-        self.nivel = nivel
+    def __init__(self, nivel, coordenadas_monedas, coordenadas_pocion_chica, coordenadas_trampas, imagen_escenario, imagen_plataforma, coordenadas_plataformas, musica):
+        self.numero = nivel
         self.generador_de_enemigos = Generador_enemigos()
         self.coordenadas_plataformas = coordenadas_plataformas
+        self.cronometro = Cronometro(60)
         self.nivel_finalizado = False
+
+        #musica
+        # pygame.mixer.init()
+        self.musica = musica        
+        self.reproduciendo_musica = False
+        # pygame.mixer.music.load(self.musica)
+        # pygame.mixer.music.play()       
 
         #grupos
         self.grupo_enemigos = pygame.sprite.Group()
@@ -37,6 +46,11 @@ class Nivel():
         self.rectangulos_colision_horizontal = [self.rectangulos_pared_derecha["left"],
                                                 self.rectangulos_pared_izquierda["right"]]
         
+    def cargar_musica(self):
+        pygame.mixer.music.set_volume(0.1)
+        pygame.mixer.music.load(self.musica)
+        pygame.mixer.music.play()
+        
     def desplegar_items(self, coordenadas_monedas, coordenadas_pocion_chica):
         for coordenadas in coordenadas_monedas:
             self.grupo_items.add(Moneda(coordenadas))
@@ -46,7 +60,7 @@ class Nivel():
 
     def desplegar_trampas(self, coordenadas_trampas):
         for coordenadas in coordenadas_trampas:
-            match self.nivel:
+            match self.numero:
                 case 1:
                     self.grupo_trampas.add(Trampa_giratoria(coordenadas))
 
@@ -107,4 +121,4 @@ class Nivel():
         self.colision_horizontal(jugador, self.grupo_enemigos)
 
         if self.generador_de_enemigos.enemigos_creados < 6:
-            self.generador_de_enemigos.generar_enemigo(self.nivel, self.grupo_enemigos, jugador, tiempo_espera_enemigos)
+            self.generador_de_enemigos.generar_enemigo(self.numero, self.grupo_enemigos, jugador, tiempo_espera_enemigos)

@@ -2,6 +2,7 @@ import pygame
 from Imagenes_enemigos import diccionario_animaciones_brujo
 import random
 from Clase_Lapida import Lapida
+from Sonidos import sonido_cuchillo
 
 class Brujo(pygame.sprite.Sprite):
     def __init__(self, jugador):
@@ -83,6 +84,7 @@ class Brujo(pygame.sprite.Sprite):
         else:
             colision_cuchillo_enemigo = pygame.sprite.spritecollide(self, jugador.grupo_cuchillos, True)
             if colision_cuchillo_enemigo:
+                sonido_cuchillo.play()
                 self.vida_total -= 1
                 if self.vida_total <= 0:
                     jugador.puntaje += 100

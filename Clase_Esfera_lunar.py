@@ -1,5 +1,6 @@
 import pygame
 from Imagenes_proyectiles import esfera_lunar, esfera_lunar_izquierda
+from Sonidos import sonido_esfera_lunar
 ANCHO = 1000
 
 class Esfera_lunar(pygame.sprite.Sprite):
@@ -11,6 +12,8 @@ class Esfera_lunar(pygame.sprite.Sprite):
         self.mirando_izquierda = mirando_izquierda
         self.velocidad_proyectil = 12
         self.velocidad_animacion = 0.2
+        self.sonido = sonido_esfera_lunar
+        self.sonido.play()
 
     def animar_imagenes(self):
         if self.indice_inicial >= len(esfera_lunar):

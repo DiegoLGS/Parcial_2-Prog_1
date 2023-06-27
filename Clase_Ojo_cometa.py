@@ -1,5 +1,6 @@
 import pygame
 from Imagenes_proyectiles import ojo_cometa
+from Sonidos import sonido_ojo_cometa
 ALTO = 700
 
 class Ojo_cometa(pygame.sprite.Sprite):
@@ -10,6 +11,8 @@ class Ojo_cometa(pygame.sprite.Sprite):
         self.rect = self.image.get_rect(center = (jugador_posicion_x, 0))
         self.velocidad_proyectil = 7
         self.velocidad_animacion = 0.2
+        self.sonido = sonido_ojo_cometa
+        self.sonido.play()
 
     def animar_imagenes(self):
         if self.indice_inicial >= len(ojo_cometa):

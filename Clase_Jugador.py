@@ -1,5 +1,6 @@
 import pygame
 from Imagenes_protagonista import diccionario_animaciones
+from Sonidos import sonidos_jugador_herida
 from Obtener_rectangulos import obtener_rectangulos
 from Clase_Cuchillo import Cuchillo
 
@@ -129,11 +130,13 @@ class Jugador():
 
     def detectar_daño(self):
         if self.daño_recibido == True:
+
             if self.vida_total < 1:
                 self.bloqueo_teclado = True
                 self.personaje_muriendo = True
                 self.indice_inicial = 0
             else:
+                sonidos_jugador_herida.play()
                 self.invulnerabilidad = True
                 self.tiempo_control_invulnerabilidad = pygame.time.get_ticks()
                 self.duracion_total_invulnerabilidad = self.tiempo_control_invulnerabilidad + self.duracion_limite_invulnerabilidad
