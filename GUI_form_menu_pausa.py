@@ -18,9 +18,7 @@ class FormMenuPausa(Form):
 
         pygame.mixer.init()
 
-        #### CONTROLES ####################
-        self.txtbox = TextBox(self._slave, x, y, 50, 50, 150, 30, "Gray", "White", "Red", "Blue", 2, font = "Garamond", font_size = 15, font_color = "Black")
-        self.btn_play = Button(self._slave, x, y, 100, 100, 100, 50, "Red", "Blue", self.btn_play_click, "Nombre", "Pause", font = "Garamond", font_size = 15, font_color = "White")
+        #### CONTROLES ####################       
 
         self.label_volumen = Label(self._slave, 620, 195, 100, 50, "20%", "Garamond", 16, "White", "Segundo parcial/Recursos/Imagenes_interfaz/label.png")
         self.slider_volumen = Slider(self._slave, x , y, 100, 210, 500, 15, self.volumen, "Blue", "White")
@@ -31,8 +29,6 @@ class FormMenuPausa(Form):
         ################################
 
         #Agrego los controles a las lista
-        self.lista_widgets.append(self.txtbox)
-        self.lista_widgets.append(self.btn_play)
         self.lista_widgets.append(self.label_volumen)
         self.lista_widgets.append(self.label_volumen_fx)
         self.lista_widgets.append(self.slider_volumen)
@@ -57,21 +53,7 @@ class FormMenuPausa(Form):
 
     def render(self):
         self._slave.fill(self._color_background)
-
-    def btn_play_click(self, texto):
-        if self.flag_play:
-            pygame.mixer.music.pause()
-            self.btn_play._color_background = "Cyan"
-            self.btn_play._font_color = "Red"
-            self.btn_play.set_text("Play")
-        else:
-            pygame.mixer.music.unpause()
-            self.btn_play._color_background = "Red"
-            self.btn_play._font_color = "White"
-            self.btn_play.set_text("Pause")
-
-        self.flag_play = not self.flag_play
-
+        
     def update_volumen(self, lista_eventos):
         self.volumen = self.slider_volumen.value
         self.volumen_fx = self.slider_volumen_fx.value
