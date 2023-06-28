@@ -27,10 +27,9 @@ while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
-            sys.exit()
+            sys.exit()                
         
-    PANTALLA.blit(background, (0,0))    
-    
+    PANTALLA.blit(background, (0,0))        
     Iniciar(PANTALLA)
     
     pygame.display.update()

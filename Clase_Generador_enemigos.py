@@ -27,7 +27,7 @@ class Generador_enemigos():
 
                 case 3:
                     grupo_enemigos.add(Hombre_Lobo(jugador))
-                    self.enemigos_creados = 6
+                    self.enemigos_creados = 10
             self.enemigos_creados += 2
 
 

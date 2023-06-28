@@ -14,16 +14,15 @@ class Nivel():
     def __init__(self, nivel, coordenadas_monedas, coordenadas_pocion_chica, coordenadas_trampas, imagen_escenario, imagen_plataforma, coordenadas_plataformas, musica):
         self.numero = nivel
         self.generador_de_enemigos = Generador_enemigos()
+        self.limite_generador_enemigos = 8
         self.coordenadas_plataformas = coordenadas_plataformas
-        self.cronometro = Cronometro(60)
+        self.cronometro = Cronometro(70)
+        self.nivel_pausado = False
         self.nivel_finalizado = False
 
         #musica
-        # pygame.mixer.init()
         self.musica = musica        
         self.reproduciendo_musica = False
-        # pygame.mixer.music.load(self.musica)
-        # pygame.mixer.music.play()       
 
         #grupos
         self.grupo_enemigos = pygame.sprite.Group()
@@ -47,7 +46,6 @@ class Nivel():
                                                 self.rectangulos_pared_izquierda["right"]]
         
     def cargar_musica(self):
-        pygame.mixer.music.set_volume(0.1)
         pygame.mixer.music.load(self.musica)
         pygame.mixer.music.play()
         
@@ -120,5 +118,5 @@ class Nivel():
         self.colision_vertical(jugador, self.grupo_enemigos)
         self.colision_horizontal(jugador, self.grupo_enemigos)
 
-        if self.generador_de_enemigos.enemigos_creados < 6:
+        if self.generador_de_enemigos.enemigos_creados < self.limite_generador_enemigos:
             self.generador_de_enemigos.generar_enemigo(self.numero, self.grupo_enemigos, jugador, tiempo_espera_enemigos)

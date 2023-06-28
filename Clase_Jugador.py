@@ -9,6 +9,7 @@ class Jugador():
         self.posicion = {"x":100,"y":570}
         self.viento = False
         self.personaje_muriendo = False
+        self.muerto = False
 
         #caracteristicas
         self.gravedad = 0.2
@@ -107,6 +108,8 @@ class Jugador():
             self.indice_inicial = self.tiempo_animacion_muerte / 1000 
             if self.indice_inicial < len(diccionario_animaciones["muriendo"]):
                 self.imagen = diccionario_animaciones["muriendo"][int(self.indice_inicial)]
+            else:
+                self.muerto = True
 
     def saltar(self):
         if self.potencia_salto > 0:

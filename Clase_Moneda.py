@@ -15,6 +15,6 @@ class Moneda(pygame.sprite.Sprite):
         pantalla.blit(self.image, self.coordenadas)
 
         if jugador.rectangulo_jugador.colliderect(self.rect):
-            jugador.puntaje += 100
+            jugador.puntaje += 200
             self.sonido.play()
             self.kill()

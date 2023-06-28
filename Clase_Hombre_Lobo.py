@@ -137,7 +137,6 @@ class Hombre_Lobo(pygame.sprite.Sprite):
             self.imagen_salud = diccionario_animaciones_hombre_lobo["icono_salud_regeneracion"]
             self.vida_total += 4
 
-
     def decidir_accion(self):
         if self.vida_total > 0 and self.intro == False:
             if self.tiempo_actual - self.tiempo_ultimo_ataque >= self.tiempo_espera_ataque:
@@ -176,6 +175,7 @@ class Hombre_Lobo(pygame.sprite.Sprite):
             if not self.estado_actual == "muriendo" and not self.estado_actual == "muriendo_izquierda":
                 self.indice_inicial = 0
             self.estado_actual = "muriendo"
+            self.velocidad_animacion = 0.10
             if self.indice_inicial >= len(diccionario_animaciones_hombre_lobo[self.estado_actual]):
                 self.kill()
 
