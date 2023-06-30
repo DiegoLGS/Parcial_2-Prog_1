@@ -7,6 +7,7 @@ from GUI_label import *
 from GUI_form  import *
 from GUI_button_image  import *
 from GUI_form_menu_score import *
+from Clase_Base_de_datos import Base_de_datos
 
 class FormMenuPausa(Form):
     def __init__(self, screen, x, y, w, h, color_background, color_border = "Black", border_size = -1, active = True):
@@ -20,12 +21,12 @@ class FormMenuPausa(Form):
 
         #### CONTROLES ####################       
 
-        self.label_volumen = Label(self._slave, 620, 195, 100, 50, "20%", "Garamond", 16, "White", "Segundo parcial/Recursos/Imagenes_interfaz/label.png")
-        self.slider_volumen = Slider(self._slave, x , y, 100, 210, 500, 15, self.volumen, "Blue", "White")
-        self.label_volumen_fx = Label(self._slave, 620, 295, 100, 50, "20%", "Garamond", 16, "White", "Segundo parcial/Recursos/Imagenes_interfaz/label.png")
-        self.slider_volumen_fx = Slider(self._slave, x , y, 100, 310, 500, 15, self.volumen_fx, "Blue", "White")
+        self.label_volumen = Label(self._slave, 680, 195, 100, 50, "20%", "Garamond", 16, "White", "Segundo parcial/Recursos/Imagenes_interfaz/label.png")
+        self.slider_volumen = Slider(self._slave, x , y, 160, 210, 500, 15, self.volumen, "Blue", "White")
+        self.label_volumen_fx = Label(self._slave, 680, 285, 100, 50, "20%", "Garamond", 16, "White", "Segundo parcial/Recursos/Imagenes_interfaz/label.png")
+        self.slider_volumen_fx = Slider(self._slave, x , y, 160, 300, 500, 15, self.volumen_fx, "Blue", "White")
 
-        self.btn_ranking = Button_Image(self._slave, x, y, 255, 100, 50, 50,  "Segundo parcial/Recursos/Imagenes_interfaz/ranking.png", self.btn_ranking_click, "texto de prueba")
+        self.btn_ranking = Button_Image(self._slave, x, y, 390, 40, 150, 150,  "Segundo parcial/Recursos/Imagenes_interfaz/ranking.png", self.btn_ranking_click, "texto de prueba")
         ################################
 
         #Agrego los controles a las lista
@@ -62,12 +63,11 @@ class FormMenuPausa(Form):
         pygame.mixer.music.set_volume(self.volumen)
 
     def btn_ranking_click(self, texto):
-        print("ENTRANDO AL RANKING")
-        dic_score = [{"jugador": "Black", "score": 1000},
-                    {"jugador": "Edu", "score": 900},
-                    {"jugador": "Franco", "score": 750}]
-        
-        form_puntaje = FormMenuScore(self._master, 250, 25, 500, 550, (220, 0, 220), "White", True, "Clase 21/Window.png", dic_score, 100, 10, 10)
+        base_de_datos_puntaje = Base_de_datos("Segundo parcial/puntajes.db")
+        puntajes = base_de_datos_puntaje.obtener_puntajes()
+                
+        form_puntaje = FormMenuScore(self._master, 250, 25, 500, 550, (220, 0, 220), "White", True, "Segundo parcial/Recursos/imagenes_interfaz/recuadro.jpg", puntajes, 100, 10, 10)
 
         self.show_dialog(form_puntaje)
+        base_de_datos_puntaje.cerrar_conexion()
 

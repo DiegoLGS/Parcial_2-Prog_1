@@ -17,8 +17,8 @@ class FormMenuScore(Form):
 
         self._margen_y = margen_y
 
-        lbl_jugador = Label(self._slave, x = margen_x + 10, y = 20, w = w/2 - margen_x -10, h = 50, text = "Jugador", font = "Verdana", font_size = 30, font_color = "White", path_image = "Clase 21/bar.png")
-        lbl_puntaje = Label(self._slave, x = margen_x + 10 + w / 2 - margen_x - 10, y = 20, w = w/2 - margen_x -10, h = 50, text = "Jugador", font = "Verdana", font_size = 30, font_color = "White", path_image = "Clase 21/bar.png")
+        lbl_jugador = Label(self._slave, x = margen_x + 10, y = 20, w = w/2 - margen_x -10, h = 50, text = "Jugador", font = "Garamond", font_size = 30, font_color = "White", path_image = "Segundo parcial/Recursos/imagenes_interfaz/franja.png")
+        lbl_puntaje = Label(self._slave, x = margen_x + 10 + w / 2 - margen_x - 10, y = 20, w = w/2 - margen_x -10, h = 50, text = "Puntaje", font = "Garamond", font_size = 30, font_color = "White", path_image = "Segundo parcial/Recursos/imagenes_interfaz/franja.png")
 
         self.lista_widgets.append(lbl_jugador)
         self.lista_widgets.append(lbl_puntaje)
@@ -30,12 +30,12 @@ class FormMenuScore(Form):
             for n,s in j.items():
                 cadena = ""
                 cadena = f"{s}"
-                jugador = Label(self._slave, pos_incial_x, pos_incial_y, w / 2 - margen_x, 100, cadena, "Verdana", 30, "White", "Clase 21/Table.png")
+                jugador = Label(self._slave, pos_incial_x, pos_incial_y, w / 2 - margen_x, 100, cadena, "Verdana", 30, "White", "Segundo parcial/Recursos/imagenes_interfaz/recuadro.jpg")
                 self.lista_widgets.append(jugador)
                 pos_incial_x += w / 2 - margen_x
             pos_incial_y += 100 + espacio
 
-        self._btn_home = Button_Image(screen = self._slave, x = w - 70, y = h - 70, master_x = x, master_y = y, w = 50, h = 50, color_background = (255, 0, 0), color_border = (255, 0 , 255), onclick = self.btn_home_click, onclick_param = "", text = "", font = "Verdana", font_size = 15, font_color = (0, 255, 0), path_image = "Clase 21/home.png")
+        self._btn_home = Button_Image(screen = self._slave, x = w - 70, y = h - 70, master_x = x, master_y = y, w = 50, h = 50, color_background = (255, 0, 0), color_border = (255, 0 , 255), onclick = self.btn_home_click, onclick_param = "", text = "", font = "Verdana", font_size = 15, font_color = (0, 255, 0), path_image = "Segundo parcial/Recursos/imagenes_interfaz/volver.png")
 
         self.lista_widgets.append(self._btn_home)
 

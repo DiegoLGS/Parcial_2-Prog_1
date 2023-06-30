@@ -16,7 +16,7 @@ caminando_izquierda = girar_imagenes(caminando,True,False)
 
 saltando = [pygame.image.load("Segundo parcial/Recursos/Alucard_sprites/saltando/24.png"),
             pygame.image.load("Segundo parcial/Recursos/Alucard_sprites/saltando/25.png")]
-saltando = reescalar_imagenes(saltando,(69,73))
+saltando = reescalar_imagenes(saltando,(69,75))
 saltando_izquierda = girar_imagenes(saltando,True,False)
 
 cayendo = [pygame.image.load("Segundo parcial/Recursos/Alucard_sprites/cayendo/27.png"),

@@ -35,7 +35,7 @@ class Lapida(pygame.sprite.Sprite):
         self.rect.x += direccion_x * self.velocidad_proyectil
         self.rect.y += direccion_y * self.velocidad_proyectil
 
-        if jugador.rectangulo_jugador.colliderect(self) and jugador.invulnerabilidad == False:
+        if jugador.rectangulo_jugador.colliderect(self) and jugador.invulnerabilidad == False and jugador.personaje_muriendo == False:
             self.sonido.play()
             jugador.vida_total -= 1
             jugador.daño_recibido = True

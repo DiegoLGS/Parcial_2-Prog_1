@@ -33,7 +33,7 @@ class Jugador():
         self.verificar_direccion(self.estado_actual)
         self.sobre_suelo = False
         self.imagen
-        self.vida_total = 5
+        self.vida_total = 4
         self.daño_recibido = False
         self.bloqueo_teclado = False
 
@@ -110,6 +110,7 @@ class Jugador():
                 self.imagen = diccionario_animaciones["muriendo"][int(self.indice_inicial)]
             else:
                 self.muerto = True
+                self.puntaje = 0
 
     def saltar(self):
         if self.potencia_salto > 0:

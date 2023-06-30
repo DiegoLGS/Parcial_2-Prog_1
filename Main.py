@@ -1,5 +1,6 @@
 import pygame, sys
 from Escenario import Iniciar
+from Clase_Base_de_datos import Base_de_datos
 
 BLANCO = (255,255,255)
 NEGRO = (0,0,0)

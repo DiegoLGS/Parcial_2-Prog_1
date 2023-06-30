@@ -18,7 +18,6 @@ class FormMenuSeleccionNivel(Form):
         self.x = x
         self.y = y
         self.intancia_nivel = None
-        #### CONTROLES ####################
         
         self.label_seleccion_nivel = Label(self._slave, 0, 0, 900, 300, "1", "Garamond", 16, "White", "Segundo parcial/Recursos/Imagenes_interfaz/label_seleccion_nivel.png")
 
@@ -26,16 +25,10 @@ class FormMenuSeleccionNivel(Form):
         self.btn_nivel_2 = Button_Image(self._slave, x, y, 400, 240, 50, 50, "Segundo parcial/Recursos/Imagenes_interfaz/imagen_nivel_cerrado.png", self.btn_nivel_click)
         self.btn_nivel_3 = Button_Image(self._slave, x, y, 600, 240, 50, 50, "Segundo parcial/Recursos/Imagenes_interfaz/imagen_nivel_cerrado.png", self.btn_nivel_click)        
 
-        ################################
-
-        #Agrego los controles a las lista
         self.lista_widgets.append(self.label_seleccion_nivel)
-
         self.lista_widgets.append(self.btn_nivel_1)
         self.lista_widgets.append(self.btn_nivel_2)
         self.lista_widgets.append(self.btn_nivel_3)
-        ##########################
-
 
         self.render()
 

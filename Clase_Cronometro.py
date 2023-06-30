@@ -14,7 +14,8 @@ class Cronometro:
             tiempo_transcurrido = pygame.time.get_ticks() - self.tiempo_actual
             if tiempo_transcurrido >= 1000: 
                 self.tiempo_actual = pygame.time.get_ticks()
-                self.tiempo_restante -= 1    
+                if self.tiempo_restante > 0:
+                    self.tiempo_restante -= 1    
 
     def mostrar_tiempo(self, pantalla):
         display_tiempo = self.fuente.render(str(self.tiempo_restante), False, BLANCO)

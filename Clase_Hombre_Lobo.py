@@ -87,9 +87,7 @@ class Hombre_Lobo(pygame.sprite.Sprite):
                 self.indice_intro += 0.02
             else:
                 self.intro = False
-                jugador.bloqueo_teclado = False
-        
-
+                jugador.bloqueo_teclado = False      
 
     def lanzar_proyectil(self):
         self.estado_actual = "lanzando_proyectil"
@@ -170,7 +168,7 @@ class Hombre_Lobo(pygame.sprite.Sprite):
                         sonido_hombre_lobo_regenerandose.play()
                         sonido_hombre_lobo_regeneracion.play()
 
-    def muerte(self):
+    def muerte(self, jugador):
         if self.vida_total < 1:
             if not self.estado_actual == "muriendo" and not self.estado_actual == "muriendo_izquierda":
                 self.indice_inicial = 0
@@ -200,4 +198,4 @@ class Hombre_Lobo(pygame.sprite.Sprite):
         self.grupo_esfera_lunar.update(jugador)
         self.grupo_esfera_lunar.draw(pantalla)
         self.saltar()
-        self.muerte()
+        self.muerte(jugador)
